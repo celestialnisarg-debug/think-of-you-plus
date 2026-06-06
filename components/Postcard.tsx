@@ -142,8 +142,8 @@ export default function Postcard({
               {/* divider */}
               <div className="w-px self-stretch bg-[#8a754d]/35" />
 
-              {/* right: message + from */}
-              <div className="relative flex flex-col">
+              {/* right: message + from (pushed down to clear the stamp) */}
+              <div className="relative flex flex-col pt-12">
                 <p className="whitespace-pre-wrap font-serif-display text-[15px] italic leading-snug text-[#4b3f2c] [overflow-wrap:anywhere]">
                   {card.message}
                 </p>
