@@ -46,10 +46,10 @@ export default function RecipientView({ card }: { card: CardState }) {
             initial={{ opacity: 0, y: 26, scale: 0.94 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             transition={{ type: "spring", stiffness: 70, damping: 16 }}
-            className="flex flex-col items-center"
+            className="flex w-full max-w-[560px] flex-col items-center"
           >
             <Confetti />
-            <div className="w-full max-w-[540px]">
+            <div className="w-full">
               <Postcard card={card} flipped={flipped} onFlip={() => setFlipped((f) => !f)} />
             </div>
 
