@@ -59,7 +59,6 @@ export default function Home() {
         <div className="w-full max-w-[540px] cursor-pointer" onClick={() => setFlipped((f) => !f)}>
           <Postcard card={sample} flipped={flipped} onFlip={() => setFlipped((f) => !f)} />
         </div>
-        <p className="mt-3 font-sans text-sm text-stone-400">Click the card to flip it</p>
       </motion.div>
     </main>
   );

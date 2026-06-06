@@ -100,26 +100,46 @@ export default function CreatePage() {
         </motion.button>
 
         {shareUrl && (
-          <div className="mt-4 w-full max-w-[540px] rounded-xl border border-stone-200 bg-white/70 p-4 text-center">
-            <p className="mb-2 font-sans text-sm font-medium text-stone-700">Your postcard is ready to send 💌</p>
-            <div className="flex items-center gap-2">
-              <input
-                readOnly
-                value={shareUrl}
-                className="flex-1 truncate rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 font-sans text-xs text-stone-600"
-              />
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(shareUrl);
-                  setCopied(true);
-                  setTimeout(() => setCopied(false), 1600);
-                }}
-                className="rounded-lg bg-stone-800 px-3 py-2 font-sans text-xs font-medium text-white"
-              >
-                {copied ? "Copied!" : "Copy"}
-              </button>
+          <>
+            <div className="mt-4 w-full max-w-[540px] rounded-xl border border-stone-200 bg-white/70 p-4 text-center">
+              <p className="mb-2 font-sans text-sm font-medium text-stone-700">Your postcard is ready to send 💌</p>
+              <div className="flex items-center gap-2">
+                <input
+                  readOnly
+                  value={shareUrl}
+                  className="flex-1 truncate rounded-lg border border-stone-200 bg-stone-50 px-3 py-2 font-sans text-xs text-stone-600"
+                />
+                <button
+                  onClick={() => {
+                    navigator.clipboard.writeText(shareUrl);
+                    setCopied(true);
+                    setTimeout(() => setCopied(false), 1600);
+                  }}
+                  className="rounded-lg bg-stone-800 px-3 py-2 font-sans text-xs font-medium text-white"
+                >
+                  {copied ? "Copied!" : "Copy"}
+                </button>
+              </div>
             </div>
-          </div>
+
+            <div className="mt-6 flex flex-col items-center">
+              <p className="mb-3 font-sans text-sm text-stone-500">Show some love to the creator</p>
+              <a
+                href="https://chai4.me/celestialnisarg"
+                target="_blank"
+                rel="noreferrer"
+                title="Support celestialnisarg on Chai4Me"
+                className="inline-flex flex-col items-center justify-center rounded-2xl border border-stone-200 bg-white px-8 py-2 no-underline shadow-sm transition-transform hover:scale-105"
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="https://chai4.me/icons/wordmark.png"
+                  alt="Chai4Me"
+                  className="h-8 object-contain"
+                />
+              </a>
+            </div>
+          </>
         )}
       </div>
     </main>

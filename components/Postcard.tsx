@@ -131,28 +131,26 @@ export default function Postcard({
 
             {/* two columns */}
             <div className="mt-5 grid h-[calc(100%-2.75rem)] grid-cols-[1fr_auto_1fr] gap-5">
-              {/* left: message + from */}
-              <div className="relative flex flex-col">
-                <p className="font-serif-display text-[15px] italic leading-snug text-[#4b3f2c] [overflow-wrap:anywhere]">
-                  {card.message}
-                </p>
-                <div className="relative z-10 mt-auto">
-                  <span className="font-serif-display text-base italic text-[#8a754d]">from:&nbsp;</span>
-                  <span className="font-serif-display text-lg">{card.fromName}</span>
+              {/* left: to */}
+              <div className="relative flex flex-col pt-1">
+                <span className="mb-3 font-serif-display text-base italic text-[#8a754d]">to</span>
+                <div className="ruled-line flex h-7 items-end pb-1">
+                  <span className="font-serif-display text-lg">{card.toName}</span>
                 </div>
               </div>
 
               {/* divider */}
               <div className="w-px self-stretch bg-[#8a754d]/35" />
 
-              {/* right: to + address lines */}
-              <div className="flex flex-col pt-1">
-                <span className="mb-3 font-serif-display text-base italic text-[#8a754d]">to</span>
-                <div className="ruled-line flex h-7 items-end pb-1">
-                  <span className="font-serif-display text-lg">{card.toName}</span>
+              {/* right: message + from */}
+              <div className="relative flex flex-col">
+                <p className="whitespace-pre-wrap font-serif-display text-[15px] italic leading-snug text-[#4b3f2c] [overflow-wrap:anywhere]">
+                  {card.message}
+                </p>
+                <div className="relative z-10 mt-auto text-right">
+                  <span className="font-serif-display text-base italic text-[#8a754d]">from:&nbsp;</span>
+                  <span className="font-serif-display text-lg">{card.fromName}</span>
                 </div>
-                <div className="ruled-line h-7" />
-                <div className="ruled-line h-7" />
               </div>
             </div>
           </div>

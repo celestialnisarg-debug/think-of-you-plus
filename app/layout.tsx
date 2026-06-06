@@ -3,7 +3,7 @@ import Link from "next/link";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "ThinkOfYou — Send a heartfelt postcard",
+  title: "Postcard For You — Send a heartfelt postcard",
   description:
     "Design a heartfelt digital postcard, seal it in an envelope, and send a link someone can open and keep.",
 };
@@ -22,7 +22,7 @@ export default function RootLayout({
               href="/"
               className="font-serif-display text-2xl font-medium tracking-wide text-stone-800"
             >
-              ThinkOfYou
+              Postcard For You
             </Link>
           </div>
         </header>
@@ -30,14 +30,14 @@ export default function RootLayout({
         {children}
 
         <footer className="px-6 py-8 text-center font-sans text-xs text-stone-400">
-          Inspired by the original think-of-you by{" "}
+          crafted by{" "}
           <a
-            href="https://www.instagram.com/iryna_lupan/"
+            href="https://www.instagram.com/celestial.creates/"
             target="_blank"
             rel="noreferrer"
-            className="underline underline-offset-2"
+            className="font-medium text-stone-500 underline-offset-4 transition-colors hover:text-stone-800 hover:underline"
           >
-            @iryna_lupan
+            @celestial.creates
           </a>
         </footer>
       </body>
