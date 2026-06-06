@@ -11,7 +11,7 @@ export default function RecipientView({ card }: { card: CardState }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
-    <main className="grid min-h-[calc(100vh-8rem)] place-items-center px-5 py-12">
+    <main className="flex min-h-[calc(100vh-7rem)] flex-col items-center justify-center px-4 py-8">
       <AnimatePresence mode="popLayout" initial={false}>
         {!opened ? (
           <motion.button
@@ -22,12 +22,12 @@ export default function RecipientView({ card }: { card: CardState }) {
             exit={{ opacity: 0, scale: 0.9, y: -10 }}
             transition={{ duration: 0.55, ease: "easeInOut" }}
             whileHover={{ scale: 1.03 }}
-            className="flex flex-col items-center"
+            className="flex w-full max-w-[440px] flex-col items-center"
           >
             <motion.div
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 3.4, repeat: Infinity, ease: "easeInOut" }}
-              className="w-full max-w-[440px]"
+              className="w-full"
             >
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
