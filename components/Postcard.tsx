@@ -15,6 +15,10 @@ type Props = {
   cardRef?: React.Ref<HTMLDivElement>;
 };
 
+/**
+ * All inner sizes use container-query width units (cqw) so the postcard's
+ * contents scale proportionally with the card — identical look on mobile and desktop.
+ */
 export default function Postcard({
   card,
   flipped,
@@ -29,7 +33,10 @@ export default function Postcard({
   const [drag, setDrag] = useState(false);
 
   return (
-    <div className="card-3d w-full max-w-[540px] aspect-[3/2]">
+    <div
+      className="card-3d w-full max-w-[540px] aspect-[3/2]"
+      style={{ containerType: "inline-size" }}
+    >
       <motion.div
         ref={cardRef}
         className="relative h-full w-full"
@@ -66,27 +73,27 @@ export default function Postcard({
             <img src={card.photoUrl} alt="" className="h-full w-full object-cover" />
           ) : (
             <div
-              className={`flex h-full w-full flex-col items-center justify-center gap-2 border-2 border-dashed text-center transition ${
+              className={`flex h-full w-full flex-col items-center justify-center gap-[1.5cqw] border-2 border-dashed text-center transition ${
                 drag ? "border-stone-400 bg-stone-100/60" : "border-stone-300/70"
               }`}
             >
               {editable ? (
                 <>
-                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" className="text-stone-400">
+                  <svg viewBox="0 0 24 24" fill="none" className="h-[6cqw] w-[6cqw] text-stone-400">
                     <path d="M12 16V4m0 0L7 9m5-5l5 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                     <path d="M4 17v2a1 1 0 001 1h14a1 1 0 001-1v-2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
                   </svg>
-                  <p className="font-sans text-sm font-medium text-stone-500">Click to upload a photo,</p>
-                  <p className="font-sans text-xs text-stone-400">or drag and drop</p>
+                  <p className="font-sans text-[3cqw] font-medium text-stone-500">Click to upload a photo,</p>
+                  <p className="font-sans text-[2.6cqw] text-stone-400">or drag and drop</p>
                 </>
               ) : null}
             </div>
           )}
 
           {card.title ? (
-            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-5">
+            <div className="pointer-events-none absolute inset-x-0 bottom-0 p-[4cqw]">
               <h3
-                className="font-serif-display text-center text-3xl font-semibold leading-tight sm:text-4xl"
+                className="font-serif-display text-center text-[7cqw] font-semibold leading-tight"
                 style={{
                   color: card.titleColor,
                   textShadow:
@@ -107,9 +114,9 @@ export default function Postcard({
           style={{ transform: "rotateY(180deg)" }}
           onClick={() => onFlip?.()}
         >
-          <div className="relative h-full w-full px-6 py-5 text-[#4b3f2c]">
+          <div className="relative h-full w-full px-[4.6cqw] py-[3.8cqw] text-[#4b3f2c]">
             {/* header */}
-            <p className="text-center font-serif-display text-sm tracking-[0.42em] text-[#8a754d]">
+            <p className="text-center font-serif-display text-[2.8cqw] tracking-[0.42em] text-[#8a754d]">
               POSTCARD
             </p>
 
@@ -118,7 +125,7 @@ export default function Postcard({
             <img
               src={stamp.src}
               alt=""
-              className="absolute right-5 top-4 h-[68px] w-auto -rotate-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)]"
+              className="absolute right-[3.8cqw] top-[3cqw] h-[13cqw] w-auto -rotate-2 drop-shadow-[0_4px_8px_rgba(0,0,0,0.18)]"
             />
 
             {/* flower */}
@@ -126,16 +133,16 @@ export default function Postcard({
             <img
               src={flower.src}
               alt=""
-              className="pointer-events-none absolute -bottom-1 left-2 h-[58%] w-auto opacity-95"
+              className="pointer-events-none absolute -bottom-[1cqw] left-[2cqw] h-[56%] w-auto opacity-95"
             />
 
             {/* two columns */}
-            <div className="mt-5 grid h-[calc(100%-2.75rem)] grid-cols-[1fr_auto_1fr] gap-5">
+            <div className="mt-[3.8cqw] grid h-[calc(100%-8.5cqw)] grid-cols-[1fr_auto_1fr] gap-[3.8cqw]">
               {/* left: to */}
-              <div className="relative flex flex-col pt-1">
-                <span className="mb-3 font-serif-display text-base italic text-[#8a754d]">to</span>
-                <div className="ruled-line flex h-7 items-end pb-1">
-                  <span className="font-serif-display text-lg">{card.toName}</span>
+              <div className="relative flex flex-col pt-[1cqw]">
+                <span className="mb-[2.3cqw] font-serif-display text-[3.3cqw] italic text-[#8a754d]">to</span>
+                <div className="ruled-line flex h-[5.4cqw] items-end pb-[0.6cqw]">
+                  <span className="font-serif-display text-[3.7cqw] leading-none">{card.toName}</span>
                 </div>
               </div>
 
@@ -143,13 +150,13 @@ export default function Postcard({
               <div className="w-px self-stretch bg-[#8a754d]/35" />
 
               {/* right: message + from (pushed down to clear the stamp) */}
-              <div className="relative flex flex-col pt-12">
-                <p className="whitespace-pre-wrap font-serif-display text-[15px] italic leading-snug text-[#4b3f2c] [overflow-wrap:anywhere]">
+              <div className="relative flex flex-col pt-[9cqw]">
+                <p className="whitespace-pre-wrap font-serif-display text-[3cqw] italic leading-snug text-[#4b3f2c] [overflow-wrap:anywhere]">
                   {card.message}
                 </p>
                 <div className="relative z-10 mt-auto text-right">
-                  <span className="font-serif-display text-base italic text-[#8a754d]">from:&nbsp;</span>
-                  <span className="font-serif-display text-lg">{card.fromName}</span>
+                  <span className="font-serif-display text-[3.3cqw] italic text-[#8a754d]">from:&nbsp;</span>
+                  <span className="font-serif-display text-[3.7cqw]">{card.fromName}</span>
                 </div>
               </div>
             </div>
