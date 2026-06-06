@@ -2,30 +2,34 @@ import { describe, it, expect } from "vitest";
 import { defaultCard, serializeCard, deserializeCard, type CardState } from "@/lib/card";
 
 describe("card state", () => {
-  it("defaultCard has a vintage theme and empty stickers", () => {
-    expect(defaultCard().theme).toBe("vintage");
-    expect(defaultCard().stickers).toEqual([]);
+  it("defaultCard starts empty with default stamp and flower", () => {
+    const c = defaultCard();
+    expect(c.title).toBe("");
+    expect(c.stamp).toBe("s2");
+    expect(c.flower).toBe("f1");
+    expect(c.titleColor).toBe("#ffffff");
   });
 
   it("serialize then deserialize is a round trip", () => {
     const card: CardState = {
       ...defaultCard(),
-      title: "Thank You",
-      titleColor: "#2f6b3f",
-      message: "You are appreciated.",
+      title: "Happy Birthday",
+      titleColor: "#1a1a1a",
+      message: "Thinking of you today.",
       toName: "Sam",
       fromName: "Alex",
-      stickers: [{ id: "s1", type: "flower", x: 10, y: 20, rotation: 15, scale: 1.2, z: 1 }],
+      stamp: "s7",
+      flower: "f3",
     };
     const round = deserializeCard(serializeCard(card));
     expect(round).toEqual(card);
   });
 
-  it("deserialize fills missing optional fields with defaults", () => {
-    const partial = JSON.stringify({ title: "Hi" });
+  it("deserialize fills missing fields with defaults", () => {
+    const partial = JSON.stringify({ toName: "Jo" });
     const card = deserializeCard(partial);
-    expect(card.title).toBe("Hi");
-    expect(card.theme).toBe("vintage");
-    expect(card.stickers).toEqual([]);
+    expect(card.toName).toBe("Jo");
+    expect(card.stamp).toBe("s2");
+    expect(card.flower).toBe("f1");
   });
 });

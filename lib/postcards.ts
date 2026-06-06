@@ -1,15 +1,21 @@
 import { getSupabase } from "@/lib/supabase";
 import { makeSlug } from "@/lib/slug";
 import type { CardState } from "@/lib/card";
+import { defaultCard } from "@/lib/card";
 
 const TABLE = "postcards";
 
 function rowToCard(row: any): CardState {
+  const d = defaultCard();
   return {
-    theme: row.theme, title: row.title, titleColor: row.title_color,
-    titleFont: row.title_font, message: row.message, toName: row.to_name,
-    fromName: row.from_name, photoUrl: row.photo_url, bg: row.bg,
-    stickers: row.stickers ?? [],
+    title: row.title ?? d.title,
+    titleColor: row.title_color ?? d.titleColor,
+    toName: row.to_name ?? d.toName,
+    fromName: row.from_name ?? d.fromName,
+    message: row.message ?? d.message,
+    photoUrl: row.photo_url ?? null,
+    stamp: row.stamp ?? d.stamp,
+    flower: row.flower ?? d.flower,
   };
 }
 
@@ -25,9 +31,15 @@ export async function saveCard(card: CardState): Promise<string> {
   const sb = getSupabase();
   const slug = makeSlug();
   const { error } = await sb.from(TABLE).insert({
-    slug, theme: card.theme, title: card.title, title_color: card.titleColor,
-    title_font: card.titleFont, message: card.message, to_name: card.toName,
-    from_name: card.fromName, photo_url: card.photoUrl, bg: card.bg, stickers: card.stickers,
+    slug,
+    title: card.title,
+    title_color: card.titleColor,
+    to_name: card.toName,
+    from_name: card.fromName,
+    message: card.message,
+    photo_url: card.photoUrl,
+    stamp: card.stamp,
+    flower: card.flower,
   });
   if (error) throw error;
   return slug;

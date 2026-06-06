@@ -1,21 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Caveat:wght@500;700&family=Inter:wght@400;600&family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #faf7f0;
-  --foreground: #2b2620;
+  --background: #fbfaf7;
+  --foreground: #2a2722;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --sans: 'Jost', system-ui, sans-serif;
 }
 
+html,
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--sans);
+}
+
+.font-serif-display {
+  font-family: var(--serif);
 }
 
 .card-3d {
-  perspective: 1600px;
+  perspective: 1800px;
 }
 
 .card-face {
@@ -23,9 +31,17 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-.paper-noise {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 4px 4px;
+/* Soft aged-paper texture for the postcard back */
+.paper-cream {
+  background-color: #f3ead4;
+  background-image:
+    radial-gradient(rgba(120, 95, 50, 0.05) 1px, transparent 1px),
+    linear-gradient(160deg, #f6eedb 0%, #f1e6cd 55%, #ecddbe 100%);
+  background-size: 5px 5px, 100% 100%;
+}
+
+.ruled-line {
+  border-bottom: 1px solid rgba(90, 70, 40, 0.28);
 }
 
 @media (prefers-reduced-motion: reduce) {

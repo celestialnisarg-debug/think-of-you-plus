@@ -1,38 +1,26 @@
-export type StickerPlacement = {
-  id: string;
-  type: string;
-  x: number;       // % of card width (0-100)
-  y: number;       // % of card height (0-100)
-  rotation: number; // degrees
-  scale: number;
-  z: number;
-};
+export const TITLE_COLORS = ["#ffffff", "#1a1a1a"] as const;
 
 export type CardState = {
-  theme: string;
   title: string;
   titleColor: string;
-  titleFont: string;
-  message: string;
   toName: string;
   fromName: string;
+  message: string;
   photoUrl: string | null;
-  bg: string | null;
-  stickers: StickerPlacement[];
+  stamp: string;
+  flower: string;
 };
 
 export function defaultCard(): CardState {
   return {
-    theme: "vintage",
-    title: "Thank You for Everything!",
-    titleColor: "#2f6b3f",
-    titleFont: "serif-display",
-    message: "Just thinking of you today.",
+    title: "",
+    titleColor: "#ffffff",
     toName: "",
     fromName: "",
+    message: "",
     photoUrl: null,
-    bg: null,
-    stickers: [],
+    stamp: "s2",
+    flower: "f1",
   };
 }
 
@@ -42,5 +30,5 @@ export function serializeCard(card: CardState): string {
 
 export function deserializeCard(raw: string): CardState {
   const parsed = JSON.parse(raw) as Partial<CardState>;
-  return { ...defaultCard(), ...parsed, stickers: parsed.stickers ?? [] };
+  return { ...defaultCard(), ...parsed };
 }
